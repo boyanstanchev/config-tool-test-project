@@ -1,0 +1,51 @@
+<div
+  [style.visibility]="!segmentData ? 'hidden' : 'visible'"
+  class="preview-container w-100 h-100"
+>
+  <span class="mr-4">Position</span>
+  <div class="d-flex flex-column w-100">
+    <div class="top-section d-flex w-100">
+      <div class="preview w-100">
+        <!-- POSITIONS -->
+        <div class="positions d-flex position-relative">
+          <div
+            *ngFor="let _ of positions; let i = index"
+            [style.left]="getSegmentOffset(i)"
+            class="position pl-2 position-absolute"
+          >
+            {{ i * 50 }}
+          </div>
+        </div>
+        <!-- POSITIONS -->
+
+        <!-- ROLLER AND SEGMENTS -->
+        <div #roller class="roller w-100 d-flex align-items-center">
+          <div
+            [style.width]="segmentWidth + 'px'"
+            *ngFor="let _ of segments"
+            class="segment"
+          ></div>
+        </div>
+        <!-- ROLLER AND SEGMENTS -->
+
+        <!-- MEASUREMENT -->
+        <div class="measurement w-100 position-relative">
+          <div class="roller-width w-100 position-absolute"></div>
+          <div class="arrow-right position-absolute"></div>
+          <div class="arrow-left position-absolute"></div>
+          <span class="position-absolute"
+            >Roller width = {{ segmentData?.rollerWidth }}</span
+          >
+        </div>
+        <!-- MEASUREMENT -->
+      </div>
+    </div>
+
+    <div class="bottom-section w-100 mt-5">
+      <span
+        >% of roller length filled with segments:
+        {{ percentageFilled }}%</span
+      >
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SegmentData } from './components/segment-form/segment-form.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'test-project';
+
+  segmentData: SegmentData;
 }

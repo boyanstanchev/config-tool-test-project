@@ -1,0 +1,130 @@
+<form [formGroup]="form" (ngSubmit)="generateDrawing()">
+  <!-- NUMBER OF SEGMENTS -->
+  <div class="row g-3">
+    <div class="col">
+      <label for="numberOfSegments" class="form-label"
+        >Number Of Segments</label
+      >
+    </div>
+
+    <div class="col">
+      <input
+        class="form-control"
+        type="number"
+        min="1"
+        step="1"
+        id="numberOfSegments"
+        formControlName="numberOfSegments"
+      />
+    </div>
+  </div>
+  <!-- NUMBER OF SEGMENTS -->
+
+  <!-- NUMBER OF SEGMENTS ERRORS -->
+  <div class="row g-3">
+    <div class="col"></div>
+    <div
+      *ngIf="
+        getControl('numberOfSegments').invalid &&
+        (getControl('numberOfSegments').dirty ||
+          getControl('numberOfSegments').touched)
+      "
+      class="col"
+    >
+      <div
+        *ngIf="getControl('numberOfSegments').errors.min"
+        class="form-error"
+      >
+        Please provide a valid number
+      </div>
+
+      <div
+        *ngIf="getControl('numberOfSegments').errors.max"
+        class="form-error"
+      >
+        Maximum number of segments is
+        <b>{{ getMaximumNumberOfSegments() }}</b>
+      </div>
+    </div>
+  </div>
+  <!-- NUMBER OF SEGMENTS ERRORS -->
+
+  <!-- ROLLER WIDTH -->
+  <div class="row g-3 mt-3">
+    <div class="col">
+      <label for="rollerWidth" class="form-label">Roller Width</label>
+    </div>
+
+    <div class="col">
+      <input
+        class="form-control"
+        type="number"
+        min="50"
+        id="rollerWidth"
+        formControlName="rollerWidth"
+      />
+    </div>
+  </div>
+  <!-- ROLLER WIDTH -->
+
+  <!-- ROLLER WIDTH ERRORS -->
+  <div class="row g-3">
+    <div class="col"></div>
+    <div
+      *ngIf="
+        getControl('rollerWidth').invalid &&
+        (getControl('rollerWidth').dirty ||
+          getControl('rollerWidth').touched)
+      "
+      class="col"
+    >
+      <div
+        *ngIf="getControl('rollerWidth').errors.required"
+        class="form-error"
+      >
+        Please provide a valid number
+      </div>
+      <div
+        *ngIf="getControl('rollerWidth').errors.min"
+        class="form-error"
+      >
+        Segment width must be atleast 50mm
+      </div>
+    </div>
+  </div>
+  <!-- ROLLER WIDTH ERRORS -->
+
+  <!-- SEGMENT WIDTH -->
+  <div class="row g-3 mt-3">
+    <div class="col">
+      <label for="segmentWidth" class="form-label"
+        >Segment Width</label
+      >
+    </div>
+
+    <div class="col">
+      <select
+        id="segmentWidth"
+        formControlName="segmentWidth"
+        class="form-control"
+      >
+        <option value="50" selected>50 mm</option>
+        <option value="75">75 mm</option>
+        <option value="100">100 mm</option>
+      </select>
+    </div>
+  </div>
+  <!-- SEGMENT WIDTH -->
+
+  <div class="row g-3 mt-3">
+    <div class="col">
+      <button
+        [disabled]="form.invalid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Generate
+      </button>
+    </div>
+  </div>
+</form>

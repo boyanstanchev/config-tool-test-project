@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SegmentPreviewComponent } from './segment-preview.component';
 
@@ -6,7 +6,7 @@ describe('SegmentPreviewComponent', () => {
   let component: SegmentPreviewComponent;
   let fixture: ComponentFixture<SegmentPreviewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SegmentPreviewComponent ]
     })

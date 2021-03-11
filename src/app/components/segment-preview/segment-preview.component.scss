@@ -61,8 +61,8 @@
 
       span {
         bottom: 15px;
-        left: calc(50% - 140px / 2);
-        width: 140px;
+        left: 50%;
+        transform: translate(-50%, 0);
         font-weight: 500;
       }
     }

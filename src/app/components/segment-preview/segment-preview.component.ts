@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  HostListener,
   Input,
   OnChanges,
   ViewChild
@@ -29,13 +28,6 @@ export class SegmentPreviewComponent implements OnChanges {
 
   percentageFilled: number;
 
-  singlePositionWidthPercentage: any;
-
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    this._calculateWidths();
-  }
-
   ngOnChanges(): void {
     if (this.segmentData) {
       this.segments.length = this.segmentData.numberOfSegments;
@@ -48,8 +40,8 @@ export class SegmentPreviewComponent implements OnChanges {
     }
   }
 
-  getSegmentOffset(i: number): string {
-    return ((i * 50) / this.segmentData.rollerWidth) * 100 + '%';
+  getSegmentOffset(index: number): string {
+    return ((index * 50) / this.segmentData.rollerWidth) * 100 + '%';
   }
 
   private _calculateWidths(): void {

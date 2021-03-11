@@ -21,9 +21,9 @@
         <!-- POSITIONS -->
 
         <!-- ROLLER AND SEGMENTS -->
-        <div #roller class="roller w-100 d-flex align-items-center">
+        <div class="roller w-100 d-flex align-items-center">
           <div
-            [style.width]="segmentWidth + 'px'"
+            [style.width]="singleSegmentWidthPercentage + '%'"
             *ngFor="let _ of segments"
             class="segment"
           ></div>

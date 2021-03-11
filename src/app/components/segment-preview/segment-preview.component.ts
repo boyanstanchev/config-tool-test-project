@@ -1,9 +1,7 @@
 import {
   Component,
-  ElementRef,
   Input,
   OnChanges,
-  ViewChild
 } from '@angular/core';
 import { SegmentData } from '../segment-form/segment-form.component';
 
@@ -15,18 +13,11 @@ import { SegmentData } from '../segment-form/segment-form.component';
 export class SegmentPreviewComponent implements OnChanges {
   @Input() segmentData: SegmentData;
 
-  @ViewChild('roller') rollerRef: ElementRef;
-
-  get roller(): HTMLDivElement {
-    return this.rollerRef.nativeElement;
-  }
-
   segments = [];
   positions = [];
 
-  segmentWidth: number;
-
   percentageFilled: number;
+  singleSegmentWidthPercentage: string;
 
   ngOnChanges(): void {
     if (this.segmentData) {
@@ -47,14 +38,8 @@ export class SegmentPreviewComponent implements OnChanges {
   private _calculateWidths(): void {
     const { segmentWidth, rollerWidth, numberOfSegments } = this.segmentData;
 
-    // Get the roller div's width
-    const rollerDivWidth = this.roller.offsetWidth;
-
     // Calculate what % is one segment width of the total roller width in mm
-    const singleSegmentWidthPercentage = ((segmentWidth * 100) / rollerWidth).toFixed(2);
-
-    // Translate that percentage to pixels from the div's width
-    this.segmentWidth = +singleSegmentWidthPercentage * rollerDivWidth / 100;
+    this.singleSegmentWidthPercentage = ((segmentWidth * 100) / rollerWidth).toFixed(2);
 
     // Calculate what percentage of roller width is filled with segments
     this.percentageFilled = +(((numberOfSegments * segmentWidth) / rollerWidth) * 100).toFixed(2);
